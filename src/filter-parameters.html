@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 在这里使用管道符号传入第一个参数进入format -->
+        <p>{{filename | format('vue',suffix)}}</p>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        // value由管道传入
+        Vue.filter('format', function(value, prefix, suffix) {
+            if (!value) return '';
+            value = value.toString();
+            return prefix + '-' + value + '.' + suffix;
+        });
+        const app = new Vue({
+            el: "#app",
+            data: {
+                filename: "filters",
+                suffix: "js"
+            }
+        });
+    </script>
+</body>
+
+</html>
